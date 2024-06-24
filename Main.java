@@ -10,14 +10,20 @@ public class Main
     public static void main(String[] args)
     {
         Main main = new Main();
+        main.showAllBooks();
         main.addBooks();
         main.removeBooks();
+        main.showAllBooks();
     }
 
     void showAllBooks()
     {
         var booklist = bookshelf.getBookList();
 
+        for(Book book : booklist)
+        {
+            System.out.println(String.format("title:%s", book.getTitle()));
+        }
     }
 
     void addBooks()
@@ -28,7 +34,8 @@ public class Main
                 new Book("Book1", "Publisher1", "2023-01-01", "Author1"),
                 new Book("Book2", "Publisher2", "2022-12-15", "Author2"),
                 new Book("Book3", "Publisher3", "2022-11-30", "Author3"),
-                new Book("Book2", "Publisher4", "2022-10-20", "Author4")
+                new Book("Book2", "Publisher4", "2022-10-20", "Author4"),
+                new Book("Book267", "Publisher5", "2020-10-20", "Author5")
             )
         );
 
@@ -41,10 +48,10 @@ public class Main
         //タイトル入力
         var title = "Book2";
 
-        //タイトルが一致する本を探す
+        //タイトルが一致または含む本を探す
         var bookList = bookshelf.getBookList();
         var booksToRemove = bookList.stream()
-        .filter(book -> book.getTitle().equals(title))
+        .filter(book -> book.getTitle().contains(title))
         .collect(Collectors.toCollection(ArrayList::new));
 
         for(Book book : booksToRemove)
