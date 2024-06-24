@@ -22,7 +22,27 @@ public class Main
 
         for(Book book : booklist)
         {
-            System.out.println(String.format("title:%s", book.getTitle()));
+            showBook(book);
+        }
+    }
+
+    void showBook(Book book)
+    {
+        System.out.println(String.format("title:%s", book.getTitle()));
+    }
+
+    void searchBooks()
+    {
+        System.out.println("input title of books to search.");
+        var bookList = bookshelf.getBookList();
+        var title = scanner.nextLine();
+        var searchingBooks = bookList.stream()
+        .filter(book -> book.getTitle().contains(title))
+        .collect(Collectors.toCollection(ArrayList::new));
+
+        for(Book book : searchingBooks)
+        {
+            showBook(book);
         }
     }
 
@@ -48,7 +68,7 @@ public class Main
         //タイトル入力
         var title = "Book2";
 
-        //タイトルが一致または含む本を探す
+        //タイトルが部分一致する本を探す
         var bookList = bookshelf.getBookList();
         var booksToRemove = bookList.stream()
         .filter(book -> book.getTitle().contains(title))
@@ -60,6 +80,7 @@ public class Main
         }
         // Book2
         // Book2
+        // Book267
 
         //消す
         bookshelf.removeBooks(booksToRemove);
