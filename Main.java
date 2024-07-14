@@ -51,11 +51,11 @@ public class Main
         var booksToAdd = new ArrayList<Book>
         (
             Arrays.asList(
-                new Book("Book1", "Publisher1", "2023-01-01", "Author1"),
-                new Book("Book2", "Publisher2", "2022-12-15", "Author2"),
-                new Book("Book3", "Publisher3", "2022-11-30", "Author3"),
-                new Book("Book2", "Publisher4", "2022-10-20", "Author4"),
-                new Book("Book267", "Publisher5", "2020-10-20", "Author5")
+                new Book("Book1", "Publisher1", "2023-01-01", new ArrayList<String>(Arrays.asList("Author1"))),
+                new Book("Book2", "Publisher2", "2022-12-15", new ArrayList<String>(Arrays.asList("Author2"))),
+                new Book("Book3", "Publisher3", "2022-11-30", new ArrayList<String>(Arrays.asList("Author3"))),
+                new Book("Book2", "Publisher4", "2022-10-20", new ArrayList<String>(Arrays.asList("Author4"))),
+                new Book("Book267", "Publisher5", "2020-10-20", new ArrayList<String>(Arrays.asList("Author5")))
             )
         );
 
