@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class Bookshelf 
 {
@@ -22,5 +23,12 @@ public class Bookshelf
     public void removeBooks(ArrayList<Book> booksToRemove)
     {
         this.booklist.removeAll(booksToRemove);
+    }
+
+    public ArrayList<Book> findBooksByTitle(String title)
+    {
+        return this.booklist.stream()
+        .filter(book -> book.getTitle().contains(title))
+        .collect(Collectors.toCollection(ArrayList::new));
     }
 }

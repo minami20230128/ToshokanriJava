@@ -31,7 +31,7 @@ public class Main
         System.out.println(String.format("title:%s", book.getTitle()));
     }
 
-    void searchBooks()
+    void findBooks()
     {
         System.out.println("input title of books to search.");
         var bookList = bookshelf.getBookList();
@@ -65,18 +65,24 @@ public class Main
     //消す本を探す、消す作業を分離
     void removeBooks()
     {
+        System.out.println("Input title to delete.");
         //タイトル入力
-        var title = "Book2";
+        var title = scanner.nextLine();
 
         //タイトルが部分一致する本を探す
-        var bookList = bookshelf.getBookList();
-        var booksToRemove = bookList.stream()
-        .filter(book -> book.getTitle().contains(title))
-        .collect(Collectors.toCollection(ArrayList::new));
+        var booksToRemove = bookshelf.findBooksByTitle(title);
 
+        System.out.println("Will you delete these books?");
         for(Book book : booksToRemove)
         {
             System.out.println(book.getTitle());
+        }
+
+        var yn = scanner.nextLine();
+        if(yn.equals("y"))
+        {
+            bookshelf.removeBooks(booksToRemove);
+            System.out.println("books deleted.");
         }
         // Book2
         // Book2
@@ -84,9 +90,9 @@ public class Main
 
         //消す
         bookshelf.removeBooks(booksToRemove);
-        bookList = bookshelf.getBookList();
+        var books = bookshelf.getBookList();
 
-        for(Book book : bookList)
+        for(Book book : books)
         {
             System.out.println(book.getTitle());
         }
